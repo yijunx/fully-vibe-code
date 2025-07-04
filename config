@@ -1,0 +1,8 @@
+ENV="locally-local"
+NAMESPACE="local"
+SERVICE_NAME=fully-vibe-code
+SERVICE_VERSION=locally-version
+
+DATABASE_URI=postgresql://postgres:postgres@fully-vibe-code-postgres:5432/postgres
+
+ARGO_URL="does not even matter locally"
