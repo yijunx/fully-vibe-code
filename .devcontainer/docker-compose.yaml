@@ -1,0 +1,27 @@
+# docker network create utilities
+networks:
+  utilities:
+    external: true
+
+services:
+  full-vibe-code:
+    build: 
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ~/.ssh:/opt/python-user/.ssh
+      - ../.devcontainer/zshrc:/opt/python-user/.zshrc
+      - ..:/opt/python-user/code
+    command: ["tail -f /dev/null"]
+    networks:
+      - utilities
+
+  full-vibe-code-postgres:
+    image: postgres:17
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ../.devcontainer/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - utilities

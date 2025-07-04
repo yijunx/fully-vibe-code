@@ -1,0 +1,27 @@
+{
+	"name": "full-vibe-code",  // change the name here
+	"dockerComposeFile": "docker-compose.yaml",
+	"service": "full-vibe-code",  // also change here
+	"workspaceFolder": "/opt/python-user/code",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"terminal.integrated.profiles.linux": {
+					"zsh": {
+						"path": "/bin/zsh"
+					}
+				},
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+			]
+		}
+	},
+	// here we make sure the pre-commit hook is installed
+	// so before you commit, it will auto run to format your code
+	// and make sure the code is clean
+	"postCreateCommand": "poetry install --with dev && chmod +x ./pre-commit.sh && ln -sf ../../pre-commit.sh .git/hooks/pre-commit",
+	"remoteUser": "python-user"
+}
